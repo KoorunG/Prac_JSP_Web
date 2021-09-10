@@ -36,7 +36,7 @@ int updateCount = 0;
 
 				String dbUser = "jspexam";
 				String dbPass = "jsppw";
-				String query = "update MEMBER set NAME = '" + name + "'" + "where memberid = " + "'" + memberID + "'";
+				String query = "update MEMBER set NAME = '" + name + "'" + "where memberID = " + "'" + memberID + "'";
 
 				// 2. Connection 생성
 				conn = DriverManager.getConnection(jdbcDriver, dbUser, dbPass);
