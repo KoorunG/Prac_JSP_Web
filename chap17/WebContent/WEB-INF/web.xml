@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+	id="WebApp_ID" version="3.1">
+	<display-name>chap17</display-name>
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+		<welcome-file>index.htm</welcome-file>
+		<welcome-file>index.jsp</welcome-file>
+		<welcome-file>default.html</welcome-file>
+		<welcome-file>default.htm</welcome-file>
+		<welcome-file>default.jsp</welcome-file>
+	</welcome-file-list>
+
+	<servlet>
+		<servlet-name>now</servlet-name>
+		<servlet-class>example.NowServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>now</servlet-name>
+		<url-pattern>/now</url-pattern>		<!-- 자바파일을 mapping 하는 과정이 필요하다 -->
+		<url-pattern>/now2</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+	<!-- web.xml으로 설정해줌으로써 나중에 값을 쉽게 바꿀 수 있게 됨 -->
+		<servlet-name>DBCPInit2</servlet-name>
+		<servlet-class>jdbc.DBCPInit2</servlet-class>
+		<init-param>
+			<param-name>jdbcdriver</param-name>
+			<param-value>com.mysql.cj.jdbc.Driver</param-value>
+		</init-param>
+		<init-param>
+			<param-name>poolName</param-name>
+			<param-value>chap14</param-value>
+		</init-param>
+		<init-param>
+			<param-name>dbUser</param-name>
+			<param-value>jspexam</param-value>
+		</init-param>
+		<init-param>
+			<param-name>dbPass</param-name>
+			<param-value>jsppw</param-value>
+		</init-param>
+		<init-param>
+			<param-name>jdbcUrl</param-name>
+			<param-value>
+					jdbc:mysql://localhost:3306/chap14?characterEncoding=UTF-8&amp;serverTimezone=UTC		<!-- 마크업 언어이기 때문에 &를 &amp; 으로 써줘야 함 -->
+			</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+</web-app>
