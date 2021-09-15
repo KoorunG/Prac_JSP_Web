@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
+  <display-name>chap19</display-name>  
+  
+  <!-- NullParameterFilter를 사용하기 위해 web.xml에 등록
+  		*.jsp (모든 jsp 파일)에 대해서 필터 적용  -->
+  <filter>
+  	<filter-name>NullParameter</filter-name>
+  	<filter-class>filter.NullParameterFilter</filter-class>
+  	<init-param>
+  		<param-name>parameterNames</param-name>
+  		<param-value>id,name</param-value>
+  		<!-- id 파라미터와 name 파라미터가 존재하지 않을 경우, 이 두 파라미터의 기본값을 ""으로 설정한다는 것을 의미함 -->
+  	</init-param>
+  </filter>
+  
+  <filter-mapping>
+  	<filter-name>NullParameter</filter-name>
+  	<url-pattern>*.jsp</url-pattern>
+  </filter-mapping>
+  
+  <!-- 로그인 검증 -->
+  <filter>
+  	<filter-name>LoginCheck</filter-name>
+  	<filter-class>filter.LoginCheckFilter</filter-class>
+  </filter>
+  
+  <filter-mapping>
+  	<filter-name>LoginCheck</filter-name>
+  	<url-pattern>/board/*</url-pattern>
+  	<!-- /board/* 에 해당하는 요청을 보내면 LoginCheckFilter이 동작함
+  		LoginCheckFilter는 session에 "MEMBER" 속성이 존재하지 않으면
+  		/loginForm.jsp로 포워딩 -->
+  </filter-mapping>
+  
+  <filter>
+  <filter-name>encodingFilter</filter-name>
+  <filter-class>util.CharacterEncodingFilter</filter-class>
+  <init-param>
+  	<param-name>encoding</param-name>
+  	<param-value>utf-8</param-value>
+  </init-param>
+  </filter>
+  
+  <filter-mapping>
+  	<filter-name>encodingFilter</filter-name>
+  	<url-pattern>/*</url-pattern>  
+  </filter-mapping>
+  
+</web-app>
