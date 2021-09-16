@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
+  <display-name>board1</display-name>
+  
+  <!-- 드라이버 연결(리스너) -->
+  <listener>
+    <listener-class>jdbc.DBCPInitListener</listener-class>
+  </listener>
+  <context-param>
+    <param-name>poolConfig</param-name>
+    <param-value>
+			jdbcdriver=com.mysql.cj.jdbc.Driver
+			jdbcUrl=jdbc:mysql://localhost:3306/board?characterEncoding=UTF-8&amp;serverTimezone=UTC
+			dbUser=jspexam
+			dbPass=jsppw
+			validationQuery=select 1
+			minIdle=3
+			maxTotal=50
+			poolName=board			
+			</param-value>
+  </context-param>
+  
+  <!-- 필터 -->
+  
+  <!-- 인코딩 필터 -->
+  <filter>
+  	<filter-name>encodingFilter</filter-name>
+  	<filter-class>util.CharacterEncodingFilter</filter-class>
+  	<init-param>
+  		<param-name>encoding</param-name>
+  		<param-value>utf-8</param-value>
+  	</init-param>
+  </filter>
+  
+  <filter-mapping>
+  	<filter-name>encodingFilter</filter-name>
+  	<url-pattern>/*</url-pattern>
+  </filter-mapping>
+  
+  <!-- 로그인 체크 필터 -->
+  <filter>
+  	<filter-name>LoginCheckFilter</filter-name>
+  	<filter-class>filter.LoginCheckFilter</filter-class>
+  </filter>
+  
+  <filter-mapping>
+  	<filter-name>LoginCheckFilter</filter-name>
+  	<url-pattern>/changePwd.do</url-pattern>
+  </filter-mapping>
+  
+  <!-- 컨트롤러 연결 (usingURI) -->
+  <servlet>
+  	<servlet-name>ControllerUsingURI</servlet-name>
+  	<servlet-class>mvc.controller.ControllerUsingURI</servlet-class>
+  	<init-param>
+  		<param-name>configFile</param-name>
+  		<param-value>/WEB-INF/commandHandlerURI.properties</param-value>
+  	</init-param>
+  	<load-on-startup>1</load-on-startup>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>ControllerUsingURI</servlet-name>
+  	<url-pattern>*.do</url-pattern> <!-- 앞으로 추가할 명령어를 *.do 형식으로 지정한 것! properties에 이런 식으로 매핑할 것임... -->
+  </servlet-mapping>
+</web-app>
