@@ -54,8 +54,9 @@ public class ArticleContentDao {
 		}
 	}
 	
+	// 게시글을 삭제하는 기능 구현
 	public int delete(Connection conn, int no) throws SQLException {
-		try(PreparedStatement pstmt = conn.prepareStatement("delete from board where article_no = ?")) {
+		try(PreparedStatement pstmt = conn.prepareStatement("delete from article_content where article_no = ?")) {
 			pstmt.setInt(1, no);
 			return pstmt.executeUpdate();
 		}

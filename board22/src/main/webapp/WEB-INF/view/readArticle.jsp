@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="u" tagdir="/WEB-INF/tags" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,7 +24,9 @@
 		</tr>
 		<tr>
 			<td>내용</td>
-			<td><c:out value='${articleData.content}' /></td>
+			<% pageContext.setAttribute("newLineChar", "\n"); %>
+			<c:set var="data" value="${articleData.content}"/>
+			<td>${fn:replace(data, newLineChar, "<br> ")}</td>
 		</tr>
 		<tr>
 			<td colspan="2">

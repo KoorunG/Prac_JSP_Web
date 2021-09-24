@@ -6,6 +6,11 @@
 <meta charset="UTF-8">
 <title>게시글 수정</title>
 </head>
+
+<!-- 게시글 수정 폼을 보여주는 modifyForm.jsp 파일 -->
+<!-- ModifyArticleHandler에서 전달받은 ModifyRequest 객체를 이용하여 폼에 데이터를 채움 -->
+<!-- 실제 로그인을 하고 게시글 읽기 화면에서 [게시글 수정] 링크를 클릭하면 수정 폼이 출력되도록 설정함 -->
+
 <body>
 	<form action="modify.do" method="post">
 		<input type="hidden" name="no" value="${modReq.articleNumber}">

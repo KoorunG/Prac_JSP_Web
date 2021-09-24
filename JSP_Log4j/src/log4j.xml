@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE log4j:configuration PUBLIC "-//APACHE//DTD LOG4J 1.2//EN" "http://logging.apache.org/log4j/1.2/apidocs/org/apache/log4j/xml/doc-files/log4j.dtd">
+
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+
+<!-- appender 설정 : appender는 실제 로그를 처리하는 모듈입니다.
+          여기서는 appender를 두 개 지정했는데, stdout의 경우 ConsoleAppender에 대한 설정으로
+          패턴 레이아웃을 이용해 메시지를 콘솔에 출력하려는 설정입니다.
+          그리고, dailyout은 RollingFileAppender에 대한 설정으로
+          매일 갱신되는 파일 기반의 appender 입니다.
+     appender가 요구하는 속성들이 있으며, C:/tmp 폴더에 dailyout.log 라는
+          파일을 매일 생성하며, 지난 파일은 연월일 순으로 날짜가 붙어 저장되게 됩니다.
+          역시 패턴 레이아웃을 사용하고 stdout보다 많은 양의 정보를 설정하고 있습니다.
+ -->
+	<appender name="stdout" class="org.apache.log4j.ConsoleAppender">
+		<layout class="org.apache.log4j.PatternLayout">
+				 <!--  log4j.PatternLayout 클래스를 활용하여 %d(날짜와 시간)를 출력합니다. --> 
+				 <!-- %c 카테고리 이름을 출력합니다. %c{1} 같은 형식으로 쓸 수 있습니다.
+                                                             %c{1} 이라면 최하위 레벨의 카테고리 이름을 출력한다는 뜻입니다.
+                                                             즉, test.log4j.TestLog4j 라면, TestLog4j만 출력됩니다.-->
+				<!-- %p 로그 레벨을 출력합니다. -->
+				<!-- %m 로그 메시지를 출력합니다. %n 개행 문자를 출력합니다. -->
+			<param name="ConversionPattern"						
+				value="[%d{HH:mm:ss}] [%c{1}] [%p] %m %n" />
+		</layout>
+	</appender>
+
+   <appender name="dailyout" class="org.apache.log4j.DailyRollingFileAppender">  
+        <param name="file" value="c:/tmp/dailyout.log"/>  
+        <param name="Append" value="true"/>  
+        <param name="DatePattern" value="'.'yyMMdd"/>  
+        <layout class="org.apache.log4j.PatternLayout"> 
+					     <!--  log4j.PatternLayout 클래스를 활용하여 %d(날짜와 시간)를 출력한다 --> 
+					     <!-- %t 로그를 생성한 쓰레드명을 출력합니다. -->
+					     <!-- %L 로그가 발생한 소스의 행번호를 출력합니다. -->
+            <param name="ConversionPattern" value="%t> [%d{yyyy-MM-dd HH:mm:ss}] [%c{1}] [%L] [%p] %m %n"/>  
+        </layout>  
+    </appender> 
+
+<!-- root logger 설정 : 여기서는 root 로거만 설정하고 있습니다.
+     INFO 레벨 이상의 메시지에 대해 stdout, dailyout 두 appender를 이용해서
+          로깅하도록 지정하고 있습니다. -->
+  
+    <root>
+        <level value="INFO" />
+        <appender-ref ref="stdout" />
+        <appender-ref ref="dailyout" />
+    </root>
+</log4j:configuration>

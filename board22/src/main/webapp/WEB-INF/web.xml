@@ -48,6 +48,7 @@
   	<url-pattern>/changePwd.do</url-pattern>
   	<!-- 게시글 쓰기 기능은 로그인한 사용자만 실행할 수 있도록 LoginCheckFilter에 url-pattern을 등록함 -->
   	<url-pattern>/article/write.do</url-pattern>
+  	<!-- 게시글 수정 기능은 로그인한 사용자만 실행할 수 있도록 LoginCheckFilter에 url-pattern을 등록함 -->
   	<url-pattern>/article/modify.do</url-pattern>
   </filter-mapping>
   

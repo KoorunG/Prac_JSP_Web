@@ -1,4 +1,4 @@
-<%@ tag body-content="scriptless" pageEncoding="utf-8"%>
+<%@ tag body-content="empty" pageEncoding="utf-8"%>
 <%@ tag trimDirectiveWhitespaces="true"%>
 <%@ attribute name="value" type="java.lang.String" required="true"%>
 <%
