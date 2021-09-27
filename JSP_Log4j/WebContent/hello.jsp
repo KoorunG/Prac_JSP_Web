@@ -8,7 +8,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	
 	<h1>Hello JSP!</h1>
 	Hello Java Server Page~
 	안녕하세요 반가워요 잘있어요 다시만나요~

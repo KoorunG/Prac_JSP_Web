@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>제이쿼리 연습</title>
+<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script type="text/javascript">
+function fn_process(){
+	
+// val() 메소드는 해당 엘리먼트(태그)의 값을 가져오거나 엘리먼트로 값을 출력하는 기능을 함...
+
+   var value=$("#t_input").val();	// val() 으로 값을 가져옴
+   
+   $("#t_output").val(value);		// val(...) 으로 값을 출력함
+ }
+
+</script>
+</head>
+<body>
+<!-- 텍스트박스에 입력한 내용을 id 셀렉터를 이용해 가져온 후 다시 텍스트 박스에 출력하는 내용 -->
+
+    <input type="text" id="t_input" /> 
+    <input type="button" value="입력하기" onClick="fn_process()" /><br><br>
+  <div>
+    결과:<br>
+     <input type="text" id="t_output"  disabled/>
+  </div> 
+</body>
+</html>
+

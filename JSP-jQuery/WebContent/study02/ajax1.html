@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<!-- Asyncronous Javascript And Xml-->
+
+<!-- 클라이언트측 작업과는 상관없이 비동기적으로 서버와 작업을 수행할 때 Ajax 기능을 사용함 -->
+<!-- 자바스크립트를 이용한 비동기 통신 -->
+<!-- 즉 클라이언트 - 서버 간의 XML이나 JSON 데이터를 주고 받는 기술 -->
+<!-- 서버의 처리를 기다리지 않고 비동기 요청이 가능하기 때문에 페이지 이동 없이 데이터 처리가 가능함 -->
+
+  <meta charset="UTF-8">
+  <title>ajax 연습1</title>
+  <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+  <script type="text/javascript">
+      function fn_process(){
+       $.ajax({
+    	   
+         type:"get",											// get방식으로 전송
+         dataType:"text",										// 응답데이터를 텍스트로 지정
+         async:false,  											// 동기 설정 (true일 경우 비동기)
+         url:"http://localhost:9001/JSP-jQuery/ajaxTest1",		// == 전송할 서블릿 지정 == 
+         data: {param:"Hello,jquery"},							// 파라미터 데이터 설정
+         success:function (data,textStatus){					// 성공 시 동작 설정
+            $('#message').append(data);							// 성공 메세지를 하단의 <div> 태그에 표시
+         },
+         error:function(data,textStatus){						// 에러 발생 시 동작 설정
+            alert("에러가 발생했습니다.");ㅣ
+         },
+         complete:function(data,textStatus){					// 완료 시 동작 설정
+            alert("작업을완료 했습니다");
+         }
+      });	
+   }		
+</script>
+</head>
+<body>
+<input type="button" value="전송하기" onClick="fn_process()" /><br><br>
+<div id="message"></div>
+</body>
+</html>
